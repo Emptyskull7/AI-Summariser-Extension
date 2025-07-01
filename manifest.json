@@ -1,27 +1,30 @@
 {
-    "manifest_version" : 3,
-    "name" : "AI Sumary for Articles",
-    "version": "1.0",
+  "manifest_version": 3,
+  "name": "AI Summary for Articles",
+  "version": "1.0",
 
-    "permissions" : [ "scripting", "activeTab", "storage" ],
+  "permissions": ["scripting", "activeTab", "storage"],
 
-    "action" : {
-        "default_popup" : "popup.html",
-        "default_icon" : "icon.png"
-    },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"]
+    }
+  ],
 
-    "content_scripts" : [
-        {
-            "matches" : ["<all_urls>"],
-            "js" : ["content.js"]
-        }
-    ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "icon.png"
+  },
 
-    "background" : {
-        "service_worker" : "background.js"
-    },
-    
-    "option_page" : "options.html",
+  "background": {
+    "service_worker": "background.js"
+  },
 
-    "host_permissions" : ["<all_urls>"]
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
+
+  "host_permissions": ["<all_urls>"]
 }
